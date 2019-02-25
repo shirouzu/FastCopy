@@ -18,45 +18,36 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="shellext.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="shellext.rc" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="resource.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="fcshext.ico" />
-  </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{DD8C289F-DDEB-4664-A8CD-65A2B067A1DF}</ProjectGuid>
-    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+    <ProjectGuid>{E99EE17D-136C-4C37-B78A-18D324E7119C}</ProjectGuid>
+    <RootNamespace>TLib</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <PlatformToolset>v141_xp</PlatformToolset>
     <UseOfMfc>false</UseOfMfc>
     <CharacterSet>MultiByte</CharacterSet>
     <WholeProgramOptimization>true</WholeProgramOptimization>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <PlatformToolset>v141</PlatformToolset>
+    <UseOfMfc>false</UseOfMfc>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
-    <PlatformToolset>v141_xp</PlatformToolset>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <PlatformToolset>v141</PlatformToolset>
     <UseOfMfc>false</UseOfMfc>
     <CharacterSet>MultiByte</CharacterSet>
     <WholeProgramOptimization>true</WholeProgramOptimization>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
-    <PlatformToolset>v141_xp</PlatformToolset>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <PlatformToolset>v141</PlatformToolset>
+    <UseOfMfc>false</UseOfMfc>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
@@ -79,88 +70,99 @@
     <_ProjectFileVersion>12.0.21005.1</_ProjectFileVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <OutDir>..\..\Debug\</OutDir>
-    <IntDir>Obj\DebugShl\</IntDir>
-    <TargetName>FastExt1</TargetName>
+    <OutDir>..\..\lib\</OutDir>
+    <IntDir>..\..\obj\DebugTlib\</IntDir>
+    <TargetName>$(ProjectName)_d</TargetName>
+    <CodeAnalysisRuleSet>NativeRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <OutDir>..\..\x64\Debug\</OutDir>
-    <IntDir>..\..\x64\Obj\DebugShl\</IntDir>
-    <TargetName>FastEx64</TargetName>
+    <OutDir>..\..\x64\lib\</OutDir>
+    <IntDir>..\..\x64\obj\DebugTlib\</IntDir>
+    <TargetName>$(ProjectName)_d</TargetName>
+    <CodeAnalysisRuleSet>NativeRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <OutDir>..\..\Release\</OutDir>
-    <IntDir>..\..\Obj\ReleaseShl\</IntDir>
-    <LinkIncremental>false</LinkIncremental>
-    <TargetName>FastExt1</TargetName>
+    <OutDir>..\..\lib\</OutDir>
+    <IntDir>Obj\ReleaseTlib\</IntDir>
+    <CodeAnalysisRuleSet>NativeRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <OutDir>..\..\x64\Release\</OutDir>
-    <IntDir>..\..\x64\Obj\ReleaseShl\</IntDir>
-    <LinkIncremental>false</LinkIncremental>
-    <TargetName>FastEx64</TargetName>
+    <OutDir>..\..\x64\lib\</OutDir>
+    <IntDir>x64\Obj\ReleaseTlib\</IntDir>
+    <CodeAnalysisRuleSet>NativeRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
+      <Optimization>
+      </Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>false</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <PrecompiledHeaderOutputFile>..\..\Obj\DebugTlib\TLib.pch</PrecompiledHeaderOutputFile>
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
       <ObjectFileName>$(IntDir)</ObjectFileName>
       <ProgramDataBaseFileName>$(IntDir)</ProgramDataBaseFileName>
+      <WarningLevel>Level3</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <EnableEnhancedInstructionSet>StreamingSIMDExtensions</EnableEnhancedInstructionSet>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <Optimization>
-      </Optimization>
     </ClCompile>
-    <Link>
-      <AdditionalDependencies>crypt32.lib;winmm.lib;Shlwapi.lib;..\..\lib\tlib.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
-      <RandomizedBaseAddress>false</RandomizedBaseAddress>
-      <ModuleDefinitionFile>shellext.def</ModuleDefinitionFile>
-    </Link>
-    <PostBuildEvent>
-      <Command>copy ..\..\debug\fastext1.dll  ..\..\x64\debug\</Command>
-    </PostBuildEvent>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0411</Culture>
+    </ResourceCompile>
+    <Lib>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+    </Lib>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>..\..\Obj\DebugTlib\TLib.bsc</OutputFile>
+    </Bscmake>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <Midl>
       <TargetEnvironment>X64</TargetEnvironment>
     </Midl>
     <ClCompile>
+      <Optimization>
+      </Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>false</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <PrecompiledHeaderOutputFile>$(IntDir)TLib.pch</PrecompiledHeaderOutputFile>
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
       <ProgramDataBaseFileName>$(IntDir)</ProgramDataBaseFileName>
+      <WarningLevel>Level3</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <EnableEnhancedInstructionSet>NotSet</EnableEnhancedInstructionSet>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <Optimization />
     </ClCompile>
-    <Link>
-      <AdditionalDependencies>crypt32.lib;winmm.lib;Shlwapi.lib;..\..\x64\lib\tlib_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
-      <TargetMachine>MachineX64</TargetMachine>
-      <RandomizedBaseAddress>false</RandomizedBaseAddress>
-      <ModuleDefinitionFile>shell64.def</ModuleDefinitionFile>
-    </Link>
-    <PostBuildEvent>
-      <Command>copy ..\..\x64\debug\fastex64.dll ..\..\debug\</Command>
-    </PostBuildEvent>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0411</Culture>
+    </ResourceCompile>
+    <Lib>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+    </Lib>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>..\..\Obj\x64\DebugTlib\TLib.bsc</OutputFile>
+    </Bscmake>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <Midl>
-      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <MkTypLibCompatible>true</MkTypLibCompatible>
-      <SuppressStartupBanner>true</SuppressStartupBanner>
-      <TargetEnvironment>Win32</TargetEnvironment>
-      <TypeLibraryName>Obj\ReleaseShl\shellext.tlb</TypeLibraryName>
-      <HeaderFileName />
-    </Midl>
     <ClCompile>
       <Optimization>Full</Optimization>
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
-      <PrecompiledHeaderOutputFile>Obj\ReleaseShl\shellext3.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>..\..\Obj\ReleaseTlib\TLib.pch</PrecompiledHeaderOutputFile>
       <AssemblerOutput>All</AssemblerOutput>
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
       <ObjectFileName>$(IntDir)</ObjectFileName>
@@ -169,52 +171,36 @@
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <EnableEnhancedInstructionSet>StreamingSIMDExtensions</EnableEnhancedInstructionSet>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <WholeProgramOptimization>true</WholeProgramOptimization>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <Culture>0x0411</Culture>
     </ResourceCompile>
-    <Link>
-      <AdditionalDependencies>crypt32.lib;winmm.lib;Shlwapi.lib;..\..\lib\tlib.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <SuppressStartupBanner>false</SuppressStartupBanner>
-      <ModuleDefinitionFile>shellext.def</ModuleDefinitionFile>
-      <ProgramDatabaseFile>$(IntDir)FastExt1.pdb</ProgramDatabaseFile>
-      <GenerateMapFile>true</GenerateMapFile>
-      <MapFileName>$(IntDir)FastExt1.map</MapFileName>
-      <SubSystem>Windows</SubSystem>
-      <ImportLibrary>Obj\ReleaseShl\FastExt1.lib</ImportLibrary>
-      <TargetMachine>MachineX86</TargetMachine>
-      <RandomizedBaseAddress>false</RandomizedBaseAddress>
-      <OptimizeReferences>true</OptimizeReferences>
-      <EnableCOMDATFolding>true</EnableCOMDATFolding>
-      <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
-      <DelayLoadDLLs>comctl32.dll;crypt32.dll;winmm.dll;mpr.dll;Shlwapi.dll;psapi.dll;gdiplus.dll;Shell32.dll</DelayLoadDLLs>
-    </Link>
+    <Lib>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <LinkTimeCodeGeneration>true</LinkTimeCodeGeneration>
+    </Lib>
     <Bscmake>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <OutputFile>Obj\ReleaseShl\shellext.bsc</OutputFile>
+      <OutputFile>..\..\Obj\ReleaseTlib\TLib.bsc</OutputFile>
     </Bscmake>
-    <PreBuildEvent>
-      <Command>xcopy ..\..\obj\ReleaseTlib\*.obj obj\ReleaseTlib\ /Y /Q</Command>
-    </PreBuildEvent>
+    <PostBuildEvent>
+      <Command>xcopy obj\ReleaseTlib\*.obj ..\..\obj\ReleaseTlib\ /Y /Q</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <Midl>
-      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <MkTypLibCompatible>true</MkTypLibCompatible>
-      <SuppressStartupBanner>true</SuppressStartupBanner>
       <TargetEnvironment>X64</TargetEnvironment>
-      <TypeLibraryName>x64\Obj\ReleaseShl\shellext.tlb</TypeLibraryName>
-      <HeaderFileName />
     </Midl>
     <ClCompile>
       <Optimization>Full</Optimization>
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
-      <PrecompiledHeaderOutputFile>$(IntDir)shellex64.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile />
       <AssemblerOutput>All</AssemblerOutput>
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
       <ObjectFileName>$(IntDir)</ObjectFileName>
@@ -228,30 +214,41 @@
       <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <Culture>0x0411</Culture>
     </ResourceCompile>
-    <Link>
-      <AdditionalDependencies>crypt32.lib;winmm.lib;Shlwapi.lib;..\..\x64\lib\tlib.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <SuppressStartupBanner>false</SuppressStartupBanner>
-      <ModuleDefinitionFile>shell64.def</ModuleDefinitionFile>
-      <ProgramDatabaseFile>$(IntDir)FastEx64.pdb</ProgramDatabaseFile>
-      <GenerateMapFile>true</GenerateMapFile>
-      <MapFileName>$(IntDir)FastEx64.map</MapFileName>
-      <SubSystem>Windows</SubSystem>
-      <ImportLibrary>$(IntDir)FastEx64.lib</ImportLibrary>
-      <TargetMachine>MachineX64</TargetMachine>
-      <RandomizedBaseAddress>false</RandomizedBaseAddress>
-      <OptimizeReferences>true</OptimizeReferences>
-      <EnableCOMDATFolding>true</EnableCOMDATFolding>
-      <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
-      <DelayLoadDLLs>comctl32.dll;crypt32.dll;winmm.dll;mpr.dll;Shlwapi.dll;psapi.dll;gdiplus.dll;Shell32.dll</DelayLoadDLLs>
-    </Link>
+    <Lib>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+    </Lib>
     <Bscmake>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <OutputFile>$(IntDir)shellext.bsc</OutputFile>
+      <OutputFile>..\..\Obj\ReleaseTlib\TLib.bsc</OutputFile>
     </Bscmake>
-    <PreBuildEvent>
-      <Command>xcopy ..\..\x64\obj\ReleaseTlib\*.obj x64\obj\ReleaseTlib\ /Y /Q</Command>
-    </PreBuildEvent>
+    <PostBuildEvent>
+      <Command>xcopy x64\obj\ReleaseTlib\*.obj ..\..\x64\obj\ReleaseTlib\ /Y /Q</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="ipdict.cpp" />
+    <ClCompile Include="tads.cpp" />
+    <ClCompile Include="tapi32ex.cpp" />
+    <ClCompile Include="tapi32u8.cpp" />
+    <ClCompile Include="tapp.cpp" />
+    <ClCompile Include="tcmndlg.cpp" />
+    <ClCompile Include="tdlg.cpp" />
+    <ClCompile Include="texcept.cpp" />
+    <ClCompile Include="tgdiplus.cpp" />
+    <ClCompile Include="tinet.cpp" />
+    <ClCompile Include="tini.cpp" />
+    <ClCompile Include="tmisc.cpp" />
+    <ClCompile Include="tregist.cpp" />
+    <ClCompile Include="tstr.cpp" />
+    <ClCompile Include="twin.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="tapi32ex.h" />
+    <ClInclude Include="tapi32u8.h" />
+    <ClInclude Include="tcmndlg.h" />
+    <ClInclude Include="tlib.h" />
+    <ClInclude Include="tmisc.h" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
